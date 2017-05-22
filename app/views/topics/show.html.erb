@@ -1,0 +1,33 @@
+<div id="container">
+  <center><h1>Forum</h1></center>
+  <%= render partial: 'shared/nav' %>
+    <div class="topicbox">
+      <div class="headingbox">
+       <div><h2>Topic <%= @topic.id %>: <%= @topic.title %></h2></div>
+       <div>by: <%= @topic.user.firstname %></div>
+      </div>
+      <div class="bodybox">
+        <%= @topic.body %>
+      </div>
+      <% @comments = @topic.comments.all %>
+
+
+      <div class="commentbox">
+        Comments (<%= @comments.size %>)
+        <% if @comments.size == 0 %>
+          <br>No comments yet..
+        <% else %>
+          <table>
+          <% @comments.each do |j| %>
+            <tr>
+            <td><%= User.find(j.user_id).firstname %>: </td><td> <%= j.body %></td>
+            </tr>
+          <% end %>
+          </table>
+          
+        <% end %>
+        
+      </div>
+    </div>
+
+</div>

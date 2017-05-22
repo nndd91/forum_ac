@@ -1,0 +1,33 @@
+<div id="container">
+  <center><h1>Forum</h1></center>
+  <%= render partial: 'shared/nav' %>
+  <% @topics.each do |i| %>
+    <div class="topicbox">
+      <div class="headingbox">
+        <% topic_title = '<div><h2>Topic ' + i.id.to_s + ': ' + i.title.to_s + '</h2></div>' %>
+        <%= link_to topic_title.html_safe, topic_path(i.id)%>
+        <!-- <div><h2>Topic <%= i.id %>: <%= i.title %></h2></div> -->
+        <div>by: <%= i.user.firstname %></div>
+      </div>
+
+      <!-- Start of body and comment
+      <div class="bodybox">
+        <%= i.body %>
+      </div>
+      <div class="commentbox">
+        
+        <table>
+        <% @comments = i.comments.all %>
+        <% @comments.each do |j| %>
+          <tr>
+          <td><%= User.find(j.user_id).firstname %>: </td><td> <%= j.body %></td>
+          </tr>
+        <% end %>
+        </table>
+      </div>
+      -->
+
+    </div>
+  <% end %>
+
+</div>
